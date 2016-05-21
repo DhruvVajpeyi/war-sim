@@ -15,6 +15,7 @@ public class WarSimulation {
         Army army2 = armies.getValue();
         System.out.println("Simulation started");
         Unit dead = null;
+        int turnCount = 0;
         while (true) {
             dead = army1.nextTurn();
             army2.kill(dead);
@@ -28,8 +29,13 @@ public class WarSimulation {
                 System.out.println("Army 2 wins");
                 break;
             }
-            System.out.println("Army 1: " + army1.getAliveCount());
-            System.out.println("Army 2: " + army2.getAliveCount());
+            if(turnCount==99) {
+                System.out.println("Army 1: " + army1.getAliveCount());
+                System.out.println("Army 2: " + army2.getAliveCount());
+                System.out.println();
+                turnCount = 0;
+            }
+            turnCount++;
         }
     }
 }
